@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class TwoNumberSum {
     public int[] twoNumberSumSolution1(int[] array, int targetSum) {
@@ -32,8 +33,22 @@ public class TwoNumberSum {
             }
         }
         return new int[0];
-
     }
+
+
+    public int[] twoNumberSumSolution3(int [] array, int targetSum){
+        HashMap<Integer,Boolean> dataStore = new HashMap<Integer, Boolean>();
+        for(Integer number : array){
+            int potentialMatch=targetSum-number;
+            if(dataStore.containsKey(potentialMatch)){
+                return new int[]{potentialMatch,number};
+            }else{
+                dataStore.put(number,Boolean.TRUE);
+            }
+        }
+        return new int[0];
+    }
+
 
     public static void main(String[] args) {
        TwoNumberSum test= new TwoNumberSum();
@@ -41,6 +56,8 @@ public class TwoNumberSum {
         System.out.println(Arrays.toString(output));
         int [] output1=test.twoNumberSumSolution2(new int[] {3, 5, -4, 8, 11, 1, -1, 6}, 10);
         System.out.println(Arrays.toString(output1));
+        int [] output2=test.twoNumberSumSolution3(new int[] {3, 5, -4, 8, 11, 1, -1, 6}, 10);
+        System.out.println(Arrays.toString(output2));
     }
 }
 
